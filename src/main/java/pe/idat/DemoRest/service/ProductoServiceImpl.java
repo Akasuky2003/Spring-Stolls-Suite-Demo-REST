@@ -28,9 +28,9 @@ public class ProductoServiceImpl implements ProductoService{
 	}
 
 	@Override
-	public void delete(Producto producto) {
+	public void delete(Integer productoId) {
 		// TODO Auto-generated method stub
-		repositorio.delete(producto);
+		repositorio.delete(productoId);
 		
 	}
 

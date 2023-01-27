@@ -8,7 +8,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import pe.idat.DemoRest.entity.Producto;
-@Repository("beanProductoRepositorio")
+@Repository
 public class ProductoRepositoryImpl implements ProductoRepositorio {
 	
 	private final static Map<Integer,Producto>productos=new HashMap<>();
@@ -41,7 +41,7 @@ public class ProductoRepositoryImpl implements ProductoRepositorio {
 	}
 
 	@Override
-	public void delete(Producto productoId) {
+	public void delete(Integer productoId) {
 		// TODO Auto-generated method stub
 		productos.remove(productoId);
 		
