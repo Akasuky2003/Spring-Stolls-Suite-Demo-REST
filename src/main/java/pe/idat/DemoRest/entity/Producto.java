@@ -2,13 +2,40 @@ package pe.idat.DemoRest.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+@Entity
+@Table(name="productos")
 public class Producto {
+	private static final long serialVersionUID=1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer productoid;
+	
+	@Column
 	private String nombre;
+	
+	@Column
 	private String marca;
+	
+	@Column
 	private Double precio;
+	@DateTimeFormat(pattern="yyyy-MM-dd",iso=ISO.DATE)
+	
 	private LocalDate fproducion;
+	@DateTimeFormat(pattern="yyyy-MM-dd",iso=ISO.DATE)
+	
 	private LocalDate fvencimiento;
+	@Column
 	private Integer stock;
 	
 	public Producto() {
@@ -25,6 +52,14 @@ public class Producto {
 		this.fvencimiento = fvencimiento;
 		this.stock = stock;
 	}
+	
+	@PrePersist
+	public void prePersist() {
+		fproducion=LocalDate.now();
+	}
+	
+	
+	
 	public Integer getProductoid() {
 		return productoid;
 	}
